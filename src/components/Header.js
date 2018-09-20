@@ -8,6 +8,7 @@ class Header extends Component {
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
                     <h1 className="App-title">Learning React - Exercises Solutions</h1>
+                    <p>{this.props.heading}</p>
                 </header>
             </div>
         )

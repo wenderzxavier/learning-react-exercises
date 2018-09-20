@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
-import Header from './Header'
-import CardGrid  from './CardGrid'
+import CardGrid from './CardGrid'
 import '../styles/App.css'
+import { Route, Switch } from 'react-router-dom'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
-        <CardGrid />
+        <Switch>
+          <Route exact path="/" render={() => (
+            <CardGrid />
+          )} />
+        </Switch>
       </div>
     );
   }
