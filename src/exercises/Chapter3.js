@@ -184,79 +184,90 @@ class Chapter3 extends Component {
                             <code className="language-javascript">
                                 {
                                     `
-const getCurrentTime = () => new Date()
+    const getCurrentTime = () => new Date()
 
-// Takes a date object and returns a object for clock time that contains 
-// hours minutes and seconds. (Used for the solution)
-const serializeClockTime = date => (
-{
-    hours: date.getHours(),
-    minutes: date.getMinutes(),
-    seconds: date.getSeconds()
-}
-                                    )
-                                    
-                                    // Takes the clock time object and appends time of day, AM or PM, to that object.
-                                    const appendAMPM = timestamp => (
-                                        {
-                                            ...timestamp,
-                                            ampm: ( timestamp >= 12 ) ? 'AM' : 'PM'
-                                        }
-                                    )
+    // Takes a date object and returns a object for clock time that contains 
+    // hours minutes and seconds. (Used for the solution)
+    const serializeClockTime = date => (
+    {
+        hours: date.getHours(),
+        minutes: date.getMinutes(),
+        seconds: date.getSeconds()
+    }
+    )
+                                        
+    // Takes the clock time object and appends time of day, AM or PM, to that object.
+    const appendAMPM = timestamp => (
+        {
+            ...timestamp,
+            ampm: ( timestamp >= 12 ) ? 'AM' : 'PM'
+        }
+    )
+                                
+    //Takes the clock time object and returns an object where hours are converted to
+    //civilian time. For example: 1300 becomes 1 o’clock
+    const civilianHours = timestamp => (
+        {
+            ...timestamp,
+            hours: (timestamp.hours) - 12 > 0 ? (timestamp.hours - 12) : timestamp.hours
+        }
+    )
                             
-                                    //Takes the clock time object and returns an object where hours are converted to civilian time. For example: 1300 becomes 1 o’clock
-                                    const civilianHours = timestamp => (
-                                        {
-                                            ...timestamp,
-                                            hours: (timestamp.hours) - 12 > 0 ? (timestamp.hours - 12) : timestamp.hours
-                                        }
-                                    )
+    //Takes a template string and uses it to return clock time formatted based upon the
+    //criteria from the string. In this example, the template is “hh:mm:ss tt”. From ther,
+    //formatClock will replaces the placeholders with hours, minutes, seconds, and time of day.
+    const formatClock = timestamp =>
+        ({timestamp.hours}:{timestamp.minutes}:{timestamp.seconds} {timestamp.ampm}) 
                             
-                                    //Takes a template string and uses it to return clock time formatted based upon the criteria from the string. In this example, 
-                                    //the template is “hh:mm:ss tt”. From ther, formatClock will replaces the placeholders with hours, minutes, seconds, and time of day.
-                                    const formatClock = timestamp =>
-                                        ({timestamp.hours}:{timestamp.minutes}:{timestamp.seconds} {timestamp.ampm}) 
-                            
-                                    // Takes an object’s key as an argument and prepends a zero to the value stored
-                                    //under that objects key. It takes in a key to a specific field and prepends values
-                                    // with a zero if the value is less than 10.
-                                    const prependZero = key => timestamp =>
-                                        ({
-                                            ...timestamp,
-                                            [key]: timestamp[key] >= 10 ? timestamp[key] : "0" + timestamp[key]
-                                        })
-                            
-                                    // A single function that will take civilian clock time and make sure the hours,
-                                    // minutes, and seconds display double digits by prepending zeros where needed.
-                                    const doubleDigits = civilianTime => 
-                                        compose(
-                                            prependZero("hours"),
-                                            prependZero("minutes"),
-                                            prependZero("seconds")
-                                        )(civilianTime)
-                            
-                                    // A single function that will take clock time as an argument and transforms it into
-                                    // civilian time by using both civilian hours.
-                                    const convertTimeToCivilian = timestamp =>
-                                        compose(
-                                            civilianHours,
-                                            appendAMPM,
-                                            serializeClockTime,
-                                        )(timestamp)
-                                    
-                                    // Compose all functions an return the clock time as string formatted as "hh:mm:ss tt"
-                                    let time = compose(
-                                        formatClock,
-                                        doubleDigits,
-                                        convertTimeToCivilian,
-                                    )(getCurrentTime())
-                            
-                                    // Update clock state of the component
-                                    this.setState({
-                                        clock: time
-                                    })
-                                    `
-                                }
+    // Takes an object’s key as an argument and prepends a zero to the value stored
+    //under that objects key. It takes in a key to a specific field and prepends values
+    // with a zero if the value is less than 10.
+    const prependZero = key => timestamp =>
+        ({
+            ...timestamp,
+            [key]: timestamp[key] >= 10 ? timestamp[key] : "0" + timestamp[key]
+        })
+                                
+    // A single function that will take civilian clock time and make sure the hours,
+    // minutes, and seconds display double digits by prepending zeros where needed.
+    const doubleDigits = civilianTime => 
+        compose(
+            prependZero("hours"),
+            prependZero("minutes"),
+            prependZero("seconds")
+        )(civilianTime)
+                                
+    // A single function that will take clock time as an argument and transforms it into
+    // civilian time by using both civilian hours.
+    const convertTimeToCivilian = timestamp =>
+        compose(
+            civilianHours,
+            appendAMPM,
+            serializeClockTime,
+        )(timestamp)
+                                        
+    // Compose all functions an return the clock time as string formatted as "hh:mm:ss tt"
+    let time = compose(
+            formatClock,
+            doubleDigits,
+            convertTimeToCivilian,
+        )(getCurrentTime())
+                                
+    // Update clock state of the component
+        this.setState({
+            clock: time
+        })
+
+    // Clock State
+    // state = { clock: "" }
+
+    // ComponentDidMount Call
+    //
+    // const oneSecond = () => 1000
+    // setInterval(this.solution, oneSecond())
+
+    `
+                            }
                             </code>
                         </pre>
                     </Grid>
