@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Header from '../components/Header'
 import descriptions from '../utils/descriptions'
+import PropTypes from 'prop-types'
 
 class Solution extends Component {
     render() {
@@ -13,6 +14,10 @@ class Solution extends Component {
             </div>
         )
     }
+}
+
+Solution.propTypes = {
+    exerciseId: PropTypes.string.isRequired,
 }
 
 export default Solution

@@ -1,18 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import logo from '../logo.svg'
 
-class Header extends Component {
-    render() {
-        return (
-            <div>
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Learning React - Exercises Solutions</h1>
-                    <p>{this.props.subheading}</p>
-                </header>
-            </div>
-        )
-    }
+const Header = ({ subheading }) => {
+    return (
+        <div>
+            <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+                <h1 className="App-title">Learning React - Exercises Solutions</h1>
+                <p>{subheading}</p>
+            </header>
+        </div>
+    )
+}
+
+Header.propTypes = {
+    subheading: PropTypes.string.isRequired,
 }
 
 export default Header

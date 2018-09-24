@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { compose } from 'redux'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
@@ -29,12 +30,12 @@ class Chapter3 extends Component {
                 seconds: date.getSeconds()
             }
         )
-        
+
         // Takes the clock time object and appends time of day, AM or PM, to that object.
         const appendAMPM = timestamp => (
             {
                 ...timestamp,
-                ampm: ( timestamp >= 12 ) ? 'AM' : 'PM'
+                ampm: (timestamp >= 12) ? 'AM' : 'PM'
             }
         )
 
@@ -49,7 +50,7 @@ class Chapter3 extends Component {
         //Takes a template string and uses it to return clock time formatted based upon the criteria from the string. In this example, 
         //the template is “hh:mm:ss tt”. From ther, formatClock will replaces the placeholders with hours, minutes, seconds, and time of day.
         const formatClock = timestamp =>
-            (`${timestamp.hours}:${timestamp.minutes}:${timestamp.seconds} ${timestamp.ampm}`) 
+            (`${timestamp.hours}:${timestamp.minutes}:${timestamp.seconds} ${timestamp.ampm}`)
 
         // Takes an object’s key as an argument and prepends a zero to the value stored
         //under that objects key. It takes in a key to a specific field and prepends values
@@ -62,7 +63,7 @@ class Chapter3 extends Component {
 
         // A single function that will take civilian clock time and make sure the hours,
         // minutes, and seconds display double digits by prepending zeros where needed.
-        const doubleDigits = civilianTime => 
+        const doubleDigits = civilianTime =>
             compose(
                 prependZero("hours"),
                 prependZero("minutes"),
@@ -77,7 +78,7 @@ class Chapter3 extends Component {
                 appendAMPM,
                 serializeClockTime,
             )(timestamp)
-        
+
         // Compose all functions an return the clock time as string formatted as "hh:mm:ss tt"
         let time = compose(
             formatClock,
@@ -91,7 +92,7 @@ class Chapter3 extends Component {
         })
     }
 
-    componentDidMount = () => {
+    componentWillMount = () => {
         Prism.highlightAll()
 
         // Starts the clock after the component is rendered, by setting an interval that will invoke a callback every second.
@@ -101,7 +102,11 @@ class Chapter3 extends Component {
         setInterval(this.solution, oneSecond())
     }
 
-    render(){
+    componentWillUnmount = () => {
+        clearInterval()
+    }
+
+    render() {
         const { classes } = this.props
         return (
             <div className={classes.root}>
@@ -267,7 +272,7 @@ class Chapter3 extends Component {
     // setInterval(this.solution, oneSecond())
 
     `
-                            }
+                                }
                             </code>
                         </pre>
                     </Grid>
@@ -275,6 +280,10 @@ class Chapter3 extends Component {
             </div>
         )
     }
+}
+
+Chapter3.propTypes = {
+    classes: PropTypes.object,
 }
 
 export default withStyles(styles)(Chapter3)

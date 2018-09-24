@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/Grid'
 import descriptions from '../utils/descriptions'
 import ExerciseCard from '../components/ExerciseCard'
@@ -32,6 +33,10 @@ class CardGrid extends Component {
             </div>
         )
     }
+}
+
+CardGrid.propTypes = {
+    classes: PropTypes.object
 }
 
 export default withStyles(styles)(CardGrid)
