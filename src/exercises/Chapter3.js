@@ -99,11 +99,11 @@ class Chapter3 extends Component {
         // The callback is composed using all of our functions. Every second the console is
         // cleared, currentTime obtained, converted, civilianized, formatted, and displayed.
         const oneSecond = () => 1000
-        setInterval(this.solution, oneSecond())
+        this.intervalClock = setInterval(this.solution, oneSecond())
     }
 
     componentWillUnmount = () => {
-        clearInterval()
+        clearInterval(this.intervalClock)
     }
 
     render() {
