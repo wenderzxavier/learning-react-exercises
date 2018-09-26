@@ -5,7 +5,6 @@ import '../../styles/chapter6.css'
 
 const ColorList = ({ colors = [], onRate = f => f, onRemove = f => f }) => 
     <div className="color-list">
-    {console.log(`Colors => ${colors}`)}
         {(colors.length === 0) ?
             <p>No Colors Listed. (Add a Color)</p> :
             colors.map(color =>

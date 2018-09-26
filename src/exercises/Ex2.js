@@ -14,7 +14,7 @@ const styles = {
     },
 }
 
-class Chapter6 extends Component {
+class Ex2 extends Component {
     state = {
         colors: [
             {
@@ -240,8 +240,8 @@ class App extends Component{
     }
 }
 
-Chapter6.propTypes = {
+Ex2.propTypes = {
     classes: PropTypes.object,
 }
 
-export default withStyles(styles)(Chapter6)
+export default withStyles(styles)(Ex2)

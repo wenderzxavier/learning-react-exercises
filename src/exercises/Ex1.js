@@ -12,7 +12,7 @@ const styles = {
     },
 }
 
-class Chapter3 extends Component {
+class Ex1 extends Component {
     state = {
         clock: "XX:XX:XX XX"
     }
@@ -282,8 +282,8 @@ class Chapter3 extends Component {
     }
 }
 
-Chapter3.propTypes = {
+Ex1.propTypes = {
     classes: PropTypes.object,
 }
 
-export default withStyles(styles)(Chapter3)
+export default withStyles(styles)(Ex1)
