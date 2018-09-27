@@ -1,18 +1,20 @@
 import React from 'react'
 import Color from './Color'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import '../../styles/chapter6.css'
 
-const ColorList = ({ colors = [], onRate = f => f, onRemove = f => f }) => 
+
+const ColorList = (props) =>
     <div className="color-list">
-        {(colors.length === 0) ?
+        {(props.colors[0].length === 0) ?
             <p>No Colors Listed. (Add a Color)</p> :
-            colors.map(color =>
+            props.colors[0].map(color =>
                 <Color
                     key={color.id}
                     {...color}
-                    onRate={(rating) => onRate(color.id, rating)}
-                    onRemove={() => onRemove(color.id)}
+//                onRate={(rating) => onRate(color.id, rating)}
+//                onRemove={() => onRemove(color.id)}
                 />
             )
         }
@@ -25,4 +27,8 @@ ColorList.propTypes = {
     onRemove: PropTypes.func,
 }
 
-export default ColorList
+const mapStateToProps = (state) => ({
+        colors: [state.reducer]
+})
+
+export default connect(mapStateToProps)(ColorList)

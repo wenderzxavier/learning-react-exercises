@@ -36,8 +36,8 @@ const descriptions = [
         chapter: '8',
         title: "Redux",
         section: "Chapter 8: Middleware",
-        description: "We are going to create a storeFactory. A factory is a function that manages the process of creating stores. In this case, the factory will create a store that has middleware for logging and saving data. The storeFactory will be one file that contains one function that groups everything needed to create the store.",
-        image: standard,
+        description: "Implement the color organizer presented on chapter 6, but using react-redux store.",
+        image: colors,
         code: <Ex4 />
     },
 ]

@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import '../../styles/chapter6.css'
+import { addColor } from '../../actions/index'
 
-const AddColor = ({newColor = f => f}) => {
+const AddColor = () => {
     let _title, _color
 
     const submit = e => {
         e.preventDefault()
-        newColor(_title.value, _color.value)
+        this.props.dispatch(addColor(_color.value, _title.value))
         _title.value = ''
         _color.value = '#000000'
         _title.focus()
