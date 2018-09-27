@@ -1,12 +1,8 @@
 # Learning React Exercises
 
-![Learning React Book Cover](https://github.com/wenderzxavier/learning-react-exercises/tree/master/src/img/book.jpg)
+<img src="/src/img/book.jpg" alt="Learning React Book Cover" width="200" align="left" />
 
 This project implements some of the projects presented on Learning Exercise Book. Although the book code samples can be found [here](https://github.com/MoonHighway/learning-react), the codes of this project are own implementations, this way, slightly different from the code provided on the book repository.
-
-![Project Image 1](https://github.com/wenderzxavier/learning-react-exercises/tree/master/src/img/docs1.jpg)
-
-![Project Image 2](https://github.com/wenderzxavier/learning-react-exercises/tree/master/src/img/docs2.jpg)
 
 ## Setup Instructions
   
